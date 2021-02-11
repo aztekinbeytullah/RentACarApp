@@ -3,13 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{F32F0BC2-7664-44E5-A7FA-72B800433121}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{F32F0BC2-7664-44E5-A7FA-72B800433121}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{65C34D12-FF4D-418A-8D2C-B70E021A092B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{65C34D12-FF4D-418A-8D2C-B70E021A092B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3F9CD84A-EDF5-4A5B-B32A-50CB63FD3156} = {3F9CD84A-EDF5-4A5B-B32A-50CB63FD3156}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentACarAppConsoleUI", "RentACarAppConsoleUI\RentACarAppConsoleUI.csproj", "{BDB453F5-3C71-403B-8D4E-31700AC303AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentACarAppConsoleUI", "RentACarAppConsoleUI\RentACarAppConsoleUI.csproj", "{BDB453F5-3C71-403B-8D4E-31700AC303AC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3F9CD84A-EDF5-4A5B-B32A-50CB63FD3156} = {3F9CD84A-EDF5-4A5B-B32A-50CB63FD3156}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{8D73FDFD-9049-456B-AAE6-B954796F75A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{8D73FDFD-9049-456B-AAE6-B954796F75A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Cora\Core.csproj", "{3F9CD84A-EDF5-4A5B-B32A-50CB63FD3156}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +41,10 @@ Global
 		{8D73FDFD-9049-456B-AAE6-B954796F75A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D73FDFD-9049-456B-AAE6-B954796F75A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D73FDFD-9049-456B-AAE6-B954796F75A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F9CD84A-EDF5-4A5B-B32A-50CB63FD3156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F9CD84A-EDF5-4A5B-B32A-50CB63FD3156}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F9CD84A-EDF5-4A5B-B32A-50CB63FD3156}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F9CD84A-EDF5-4A5B-B32A-50CB63FD3156}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

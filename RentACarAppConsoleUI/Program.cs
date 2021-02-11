@@ -1,5 +1,5 @@
 ﻿using Business.Concrete;
-using DataAccess.Concrete.InMemorySimulation;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 
@@ -9,8 +9,16 @@ namespace RentACarAppConsoleUI
     {
         static void Main(string[] args)
         {
-            CarManager _carManager = new CarManager(new InMemoryCarDal());
+            CarManager _carManager = new CarManager(new EfCarDal());
+            //Test(_carManager);
+            _carManager.Add(new Car { 
+                BrandId=5,ColorId=3,DailyPrice=120,Description="Car Added",ModelYear=1970,Name="Efsane"
+            });
 
+        }
+
+        private static void Test(CarManager _carManager)
+        {
             //--------------------------------------------------------------
             Console.WriteLine("--- Tüm Araçların Listesi ---");
             foreach (var car in _carManager.GetAll())
@@ -27,8 +35,8 @@ namespace RentACarAppConsoleUI
                 Id = 6,
                 BrandId = 2,
                 ColorId = 1,
-                DailyPrice = 330, 
-                Description = "Yeni Eklenen Araç", 
+                DailyPrice = 330,
+                Description = "Yeni Eklenen Araç",
                 ModelYear = 2021
             };
             _carManager.Add(car1);
@@ -52,7 +60,7 @@ namespace RentACarAppConsoleUI
             //--------------------------------------------------------------
             Console.WriteLine(" ");
             Console.WriteLine(" ID numarası 5 Olan Aracın Silinmesi ve Tüm Araçların Yeniden Listelenmesi");
-            Car car5 = new Car { Id = 5};
+            Car car5 = new Car { Id = 5 };
             _carManager.Delete(car5);
             foreach (var car in _carManager.GetAll())
             {
@@ -63,10 +71,9 @@ namespace RentACarAppConsoleUI
             //--------------------------------------------------------------
             Console.WriteLine(" ");
             Console.WriteLine(" ID numarası 3 Olan Aracın Bilgilerinin Getirilmesi");
-             Car car3= _carManager.GetById(3);      
+            Car car3 = _carManager.GetById(3);
             Console.WriteLine("CarID: " + car3.Id + " MarkaID: " + car3.BrandId + " Model Year:" + car3.ModelYear +
                     " Günlük Kirası:" + car3.DailyPrice + " Açıklama:" + car3.Description);
-          
         }
     }
 }
