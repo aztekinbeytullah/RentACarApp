@@ -1,4 +1,8 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Abstract.Results;
+using Core.Utilities.Results;
+using Core.Utilities.Results.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -15,37 +19,32 @@ namespace Business.Concrete
             _brandDal = BrandDal;
         }
 
-        public void Add(Brand Brand)
+        public IResult Add(Brand brand)
         {
-            //Gerekli İş kodları ve kontrolleri sağlandıktan sonra...>
-
-
-            _brandDal.Add(Brand);
-            
+            _brandDal.Add(brand);
+            return new SuccessResult(Message.InsertSuccess);
         }
 
-        public void Delete(Brand Brand)
+        public IResult Delete(Brand brand)
         {
-            //Gerekli İş kodları ve kontrolleri sağlandıktan sonra...>
-            _brandDal.Delete(Brand);
+            _brandDal.Delete(brand);
+            return new SuccessResult(Message.DeleteSuccess);
         }
 
-        public List<Brand> GetAll()
+        public IDataResult<List<Brand>> GetAll()
         {
-            //Gerekli İş kodları ve kontrolleri sağlandıktan sonra...>
-            return _brandDal.GetAll();
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll()); 
         }
 
-        public Brand GetById(int Id)
+        public IDataResult<Brand> GetById(int BrandId)
         {
-            //Gerekli İş kodları ve kontrolleri sağlandıktan sonra...>
-            return null;
+                return new SuccessDataResult<Brand>(_brandDal.Get(b=>b.Id==BrandId));
         }
 
-        public void Update(Brand Brand)
+        public IResult Update(Brand brand)
         {
-            //Gerekli İş kodları ve kontrolleri sağlandıktan sonra...>
-            _brandDal.Update(Brand);
+           _brandDal.Update(brand);
+           return new SuccessResult(Message.UpdateSuccess);
         }
     }
 }

@@ -1,4 +1,8 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Abstract.Results;
+using Core.Utilities.Results;
+using Core.Utilities.Results.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -15,37 +19,33 @@ namespace Business.Concrete
             _colorDal = ColorDal;
         }
 
-        public void Add(Color Color)
+        public IResult Add(Color color)
         {
-            //Gerekli İş kodları ve kontrolleri sağlandıktan sonra...>
-
-
-            _colorDal.Add(Color);
-            
+            _colorDal.Add(color);
+            return new SuccessResult(Message.InsertSuccess);
+                
         }
 
-        public void Delete(Color Color)
+        public IResult Delete(Color color)
         {
-            //Gerekli İş kodları ve kontrolleri sağlandıktan sonra...>
-            _colorDal.Delete(Color);
+            _colorDal.Delete(color);
+            return new SuccessResult(Message.DeleteSuccess);
         }
 
-        public List<Color> GetAll()
+        public IDataResult<List<Color>> GetAll()
         {
-            //Gerekli İş kodları ve kontrolleri sağlandıktan sonra...>
-            return _colorDal.GetAll();
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll());
         }
 
-        public Color GetById(int Id)
+        public IDataResult<Color> GetById(int colorId)
         {
-            //Gerekli İş kodları ve kontrolleri sağlandıktan sonra...>
-            return null;
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.Id == colorId));
         }
 
-        public void Update(Color Color)
+        public IResult Update(Color color)
         {
-            //Gerekli İş kodları ve kontrolleri sağlandıktan sonra...>
-            _colorDal.Update(Color);
+            _colorDal.Update(color);
+            return new SuccessResult(Message.UpdateSuccess);
         }
     }
 }
