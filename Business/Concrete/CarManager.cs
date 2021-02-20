@@ -5,6 +5,7 @@ using Core.Utilities.Results;
 using Core.Utilities.Results.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,7 +22,7 @@ namespace Business.Concrete
 
         public IResult Add(Car car)
         {
-            if (car.Name.Length>=2 && car.DailyPrice>0)
+            if (car.CarName.Length>=2 && car.DailyPrice>0)
             {
                 _carDal.Add(car);
                 return new SuccessResult(Message.InsertSuccess);
@@ -46,6 +47,11 @@ namespace Business.Concrete
         public IDataResult<Car> GetById(int carId)
         {
             return new SuccessDataResult<Car>(_carDal.Get(b => b.Id == carId));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarList()
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarsDetail());
         }
 
         public IDataResult<List<Car>> GetCarsByBrandId(int brandId)
