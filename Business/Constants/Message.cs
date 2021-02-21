@@ -13,6 +13,8 @@ namespace Business.Constants
         public static string DeleteError = "Silme İşlemi Başarısız.";
         public static string UpdateError = "Güncelleme İşlemi Başarısız.";
         public static string Listed = "Talep Listelendi.";
+        internal static string GeneralError="Genel hata mesajı oluştu.";
+        internal static string GeneralSuccess = "Genel hata mesajı oluştu.";
 
     }
 }
