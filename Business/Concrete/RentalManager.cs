@@ -7,6 +7,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -22,10 +23,10 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
-            var isCarRental = _rentalDal.Get(r => r.CarId == rental.CarId && r.ReturnDate >= DateTime.Now);
+            var isCarRental = _rentalDal.GetAll(r => r.CarId == rental.CarId && r.ReturnDate >= DateTime.Now).Any();
 
-            if (isCarRental != null)
-                return new ErrorResult(Message.GeneralError);
+            if (isCarRental)
+                return new ErrorResult(Message.ThisCarIsNotRental);
 
             _rentalDal.Add(rental);
             return new SuccessResult(Message.GeneralSuccess);

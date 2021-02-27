@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Abstract.Results;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using Core.Utilities.Results.Abstract;
 using DataAccess.Abstract;
@@ -20,16 +22,25 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [ValidationAspect(typeof(Car))]
         public IResult Add(Car car)
         {
-            if (car.CarName.Length>=2 && car.DailyPrice>0)
+            //Eklenen arabaların günlük kira bedelleri 150 Tlnin üstünde olsun.
+
+            IResult result = BusinessRules.Run(
+                                CheckIfCarDailyPriceMinPrice(car.DailyPrice)
+                             );
+
+            if (result != null)
             {
-                _carDal.Add(car);
-                return new SuccessResult(Message.InsertSuccess);
+                return result;
             }
-            return new ErrorResult(Message.InsertError);
+            _carDal.Add(car);
+                return new SuccessResult(Message.InsertSuccess);
 
         }
+
+       
 
         public IResult Delete(Car car)
         {
@@ -71,6 +82,17 @@ namespace Business.Concrete
             return new SuccessResult(Message.UpdateSuccess);
         }
 
-        
+
+        private IResult CheckIfCarDailyPriceMinPrice(decimal dailyPrice)
+        {
+            if (dailyPrice<150)
+            {
+                return new ErrorResult(Message.DailyPriceUnderMinPrice);
+            }
+            return new SuccessResult();
+        }
+
+
+
     }
 }
