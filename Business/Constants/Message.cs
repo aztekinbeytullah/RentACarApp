@@ -17,5 +17,6 @@ namespace Business.Constants
         public static string GeneralSuccess = "İşlem Başarıyla Sonuçlandı";
         public static string ThisCarIsNotRental="Bu araç kiralanamaz";
         internal static string DailyPriceUnderMinPrice="Günlük kiralama bedeli belirlenen bedelin altında";
+        internal static string MaxPhotosForThisCar="Bu araç için maksimum 5 fotograf yükleyebilirsiniz.";
     }
 }
